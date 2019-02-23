@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.iceroot.net_ladder.dao.ErrorLogMapper">
+    <resultMap id="BaseResultMap" type="cn.iceroot.net_ladder.pojo.ErrorLog">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="url" jdbcType="VARCHAR" property="url" />
+        <result column="statusCode" jdbcType="VARCHAR" property="statusCode" />
+        <result column="contentType" jdbcType="VARCHAR" property="contentType" />
+        <result column="contentLength" jdbcType="VARCHAR" property="contentLength" />
+        <result column="contentEncoding" jdbcType="VARCHAR" property="contentEncoding" />
+        <result column="protocolVersion" jdbcType="VARCHAR" property="protocolVersion" />
+        <result column="reasonPhrase" jdbcType="VARCHAR" property="reasonPhrase" />
+        <result column="createTime" jdbcType="VARCHAR" property="createTime" />
+        <result column="content" jdbcType="VARCHAR" property="content" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, name, url, statusCode, contentType, contentLength, contentEncoding, protocolVersion, 
+        reasonPhrase, createTime, content 
+    </sql>
+    <select id="getErrorLogById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select 
+        <include refid="Base_Column_List" />
+        from t_error_log
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteErrorLog" parameterType="java.lang.Integer">
+        delete from t_error_log
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="saveErrorLog" parameterType="cn.iceroot.net_ladder.pojo.ErrorLog">
+        insert into t_error_log (
+            name, url, statusCode, contentType, contentLength, contentEncoding, protocolVersion, reasonPhrase, 
+            createTime, content
+        ) values (
+            #{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{statusCode,jdbcType=VARCHAR}, #{contentType,jdbcType=VARCHAR}, 
+            #{contentLength,jdbcType=VARCHAR}, #{contentEncoding,jdbcType=VARCHAR}, #{protocolVersion,jdbcType=VARCHAR}, #{reasonPhrase,jdbcType=VARCHAR}, 
+            #{createTime,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="cn.iceroot.net_ladder.pojo.ErrorLog">
+        insert into t_error_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="url != null">
+                url,
+            </if>
+            <if test="statusCode != null">
+                statusCode,
+            </if>
+            <if test="contentType != null">
+                contentType,
+            </if>
+            <if test="contentLength != null">
+                contentLength,
+            </if>
+            <if test="contentEncoding != null">
+                contentEncoding,
+            </if>
+            <if test="protocolVersion != null">
+                protocolVersion,
+            </if>
+            <if test="reasonPhrase != null">
+                reasonPhrase,
+            </if>
+            <if test="createTime != null">
+                createTime,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null">
+                #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="statusCode != null">
+                #{statusCode,jdbcType=VARCHAR},
+            </if>
+            <if test="contentType != null">
+                #{contentType,jdbcType=VARCHAR},
+            </if>
+            <if test="contentLength != null">
+                #{contentLength,jdbcType=VARCHAR},
+            </if>
+            <if test="contentEncoding != null">
+                #{contentEncoding,jdbcType=VARCHAR},
+            </if>
+            <if test="protocolVersion != null">
+                #{protocolVersion,jdbcType=VARCHAR},
+            </if>
+            <if test="reasonPhrase != null">
+                #{reasonPhrase,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateErrorLog" parameterType="cn.iceroot.net_ladder.pojo.ErrorLog">
+        update t_error_log
+        <set>
+            <if test="id != null">
+                id = #{id,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="url != null">
+                url = #{url,jdbcType=VARCHAR},
+            </if>
+            <if test="statusCode != null">
+                statusCode = #{statusCode,jdbcType=VARCHAR},
+            </if>
+            <if test="contentType != null">
+                contentType = #{contentType,jdbcType=VARCHAR},
+            </if>
+            <if test="contentLength != null">
+                contentLength = #{contentLength,jdbcType=VARCHAR},
+            </if>
+            <if test="contentEncoding != null">
+                contentEncoding = #{contentEncoding,jdbcType=VARCHAR},
+            </if>
+            <if test="protocolVersion != null">
+                protocolVersion = #{protocolVersion,jdbcType=VARCHAR},
+            </if>
+            <if test="reasonPhrase != null">
+                reasonPhrase = #{reasonPhrase,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                createTime = #{createTime,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="cn.iceroot.net_ladder.pojo.ErrorLog">
+        update t_error_log
+        set name = #{name,jdbcType=VARCHAR},
+            url = #{url,jdbcType=VARCHAR},
+            statusCode = #{statusCode,jdbcType=VARCHAR},
+            contentType = #{contentType,jdbcType=VARCHAR},
+            contentLength = #{contentLength,jdbcType=VARCHAR},
+            contentEncoding = #{contentEncoding,jdbcType=VARCHAR},
+            protocolVersion = #{protocolVersion,jdbcType=VARCHAR},
+            reasonPhrase = #{reasonPhrase,jdbcType=VARCHAR},
+            createTime = #{createTime,jdbcType=VARCHAR},
+            content = #{content,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="findAll" resultMap="BaseResultMap">
+        select 
+        <include refid="Base_Column_List"/>
+        from t_error_log limit 30
+    </select>
+    <delete id="deleteBatch" parameterType="Integer">
+        delete from t_error_log where id in 
+        <foreach item="id_cursor" collection="ids" open="(" close=")" separator=",">
+            #{id_cursor}
+        </foreach>
+    </delete>
+</mapper>
